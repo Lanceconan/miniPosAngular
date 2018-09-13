@@ -1,0 +1,38 @@
+<div class="formularioClientes">
+    <div class="formularioClientesInterno">
+
+        <form [formGroup]="formularioClientes" (ngSubmit)="onSubmit(formularioClientes)">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rut" formControlName="rut">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nombre" formControlName="nombre">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Apellido Paterno" formControlName="apellidoPaterno">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Apellido Materno" formControlName="apellidoMaterno">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nacionalidad" formControlName="nacionalidad">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+
+            <br><br>
+            <button mat-raised-button color="primary" type="submit">Enviar</button>
+            <button mat-raised-button color="warn" (click)="formularioClientes.reset()">Limpiar</button>
+            <br><br>
+        </form>
+    </div>
+</div>
