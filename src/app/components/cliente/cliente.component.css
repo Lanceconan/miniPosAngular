@@ -8,6 +8,14 @@
     margin-top: 50px;
     border: 1px solid #afcde3;
     width: 400px;
+    float: left;
+}
+
+.tablaClientes {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 1300px;
+    float: left;
 }
 
 .formularioClientesInterno {
@@ -16,8 +24,20 @@
 }
 
 .example-full-width {
-    background: lightgrey;
     width: 320px;
     display: block;
     padding: 10px;
+}
+
+.botonera {
+    margin-left: 50%;
+}
+
+table {
+    width: 100%;
+}
+
+td,
+th {
+    width: 5%;
 }

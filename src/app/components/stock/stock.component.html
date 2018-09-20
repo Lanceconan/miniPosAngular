@@ -1,3 +1,92 @@
-<p>
-  stock works!
-</p>
+<div class="formularioStock">
+    <h2 style="text-align: center; color: rgb(73, 73, 73)">Registro de Stock</h2>
+    <div class="formularioStockInterno">
+
+        <form [formGroup]="formularioStock">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rut" formControlName="rut">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nombre" formControlName="nombre">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Apellido Paterno" formControlName="apellidoPaterno">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Apellido Materno" formControlName="apellidoMaterno">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nacionalidad" formControlName="nacionalidad">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+
+            <br><br>
+            <div class="botonera">
+                <button mat-raised-button type="submit" color="primary" (click)="saveCliente(formularioClientes)">Registrar</button>
+                <button mat-raised-button type="reset" color="warn" (click)="limpiarFormulario(formularioClientes)">Limpiar</button>
+            </div>
+            <br><br>
+        </form>
+    </div>
+</div>
+
+<div class="tablaStock">
+
+    <mat-form-field style="margin-left: 50px; width: 300px; padding: 10px">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Búsqueda rápida">
+    </mat-form-field>
+
+    <div style="margin-bottom: 20px;">
+        <div class="mat-elevation-z8" [ngStyle]="{'margin-left': '50px', 'background' : 'lightgray', 'margin-right': '50px'}">
+
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="Rut">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Rut </th>
+                    <td mat-cell *matCellDef="let row"> {{row.rut}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Apellido Paterno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Paterno </th>
+                    <td mat-cell *matCellDef="let row"> {{row.apellidoPaterno}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Apellido Materno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Materno </th>
+                    <td mat-cell *matCellDef="let row"> {{row.apellidoMaterno}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Fecha de Nacimiento">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Nacimiento </th>
+                    <td mat-cell *matCellDef="let row"> {{row.fechaNacimiento | date:"dd-MM-yyyy" }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Nacionalidad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nacionalidad </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nacionalidad}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
