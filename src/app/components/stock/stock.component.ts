@@ -16,7 +16,7 @@ export class StockComponent implements OnInit {
   stock: StockModel;
   stocks: Array<StockModel>;
 
-  displayedColumns: string[] = ['Rut', 'Nombre', 'Apellido Paterno', 'Apellido Materno', 'Fecha de Nacimiento', 'Nacionalidad'];
+  displayedColumns: string[] = ['Nombre', 'Descripción', 'Cantidad', 'Valor Exento', 'Valor Impuestos', 'Valor Total'];
   dataSource: MatTableDataSource<StockModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,10 +30,10 @@ export class StockComponent implements OnInit {
     this.formularioStock = this.formBuilder.group({      
       nombre: [''],
       descripcion: [''],
-      cantidad: [''],
-      valorTotal: [''],
+      cantidad: [''],      
       valorExento: [''],
-      ValorImpuestos: ['']
+      valorImpuestos: [''],
+      valorTotal: ['']
     });
 
     this.stocks = [
@@ -44,7 +44,13 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'Item por Página';
+    this.paginator._intl.nextPageLabel = 'Siguiente';
+    this.paginator._intl.previousPageLabel = 'Anterior';
   }
+  
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -62,23 +68,25 @@ export class StockComponent implements OnInit {
     return this.stocks.length + 1;
   }
 
-  saveCliente(formularioClientes: FormGroup) {
+  saveStock(formularioStock: FormGroup) {
+  
 
     this.stock = new StockModel(
       this.getNextId(),
-      formularioClientes.value.rut,
-      formularioClientes.value.nombre,
-      formularioClientes.value.apellidoPaterno,
-      formularioClientes.value.apellidoMaterno,
-      formularioClientes.value.fechaNacimiento,
-      formularioClientes.value.nacionalidad,
+      formularioStock.value.nombre,
+      formularioStock.value.descripcion,
+      formularioStock.value.cantidad,
+      formularioStock.value.valorTotal,
+      formularioStock.value.valorExento,
+      formularioStock.value.valorImpuestos
     );    
     
     this.stockService.saveStock(this.stock);
-    
+    console.log(this.stock);
+
     this.stocks.push(this.stock);
     this.dataSource = new MatTableDataSource(this.stocks);
-    formularioClientes.reset();
+    formularioStock.reset();
 
   }
 

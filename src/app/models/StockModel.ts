@@ -6,6 +6,6 @@ export class StockModel {
         public cantidad: number,
         public valorTotal: number,
         public valorExento: number,
-        public ValorImpuestos: number
+        public valorImpuestos: number
     ) { }
 }
