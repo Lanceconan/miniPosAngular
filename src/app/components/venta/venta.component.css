@@ -1,0 +1,40 @@
+.moduloCliente {
+    margin-left: 50px;
+    margin-top: 50px;
+    border: 1px solid #afcde3;
+    width: 400px;
+    float: left;
+}
+
+.moduloBusquedaStock {
+    margin-left: 50px;
+    margin-top: 50px;
+    border: 1px solid #afcde3;
+    width: 400px;
+    float: left;
+}
+
+.moduloProductos {
+    margin-left: 50px;
+    margin-top: 50px;
+    border: 1px solid #afcde3;
+    width: 400px;
+    float: left;
+}
+
+.moduloAcciones {
+    margin-left: 50px;
+    margin-top: 50px;
+    border: 1px solid #afcde3;
+    width: 400px;
+    float: left;
+}
+
+.tituloModulo {
+    text-align: left;
+    color: rgb(73, 73, 73);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 4%;
+}

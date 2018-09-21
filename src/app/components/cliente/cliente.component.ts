@@ -16,7 +16,7 @@ export class ClienteComponent implements OnInit {
   cliente: ClienteModel;
   clientes: Array<ClienteModel>;
 
-  displayedColumns: string[] = ['Rut', 'Nombre', 'Apellido Paterno', 'Apellido Materno', 'Fecha de Nacimiento', 'Nacionalidad'];
+  displayedColumns: string[] = ['Rut', 'Nombre', 'Apellido Paterno', 'Apellido Materno', 'Fecha de Nacimiento', 'Nacionalidad', 'Acciones'];
   dataSource: MatTableDataSource<ClienteModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,12 +36,7 @@ export class ClienteComponent implements OnInit {
       fechaNacimiento: ['']
     });
 
-    this.clientes = [
-      new ClienteModel(1, '17339126-9', 'daniel', 'gutierrez', 'pizarro', new Date(), 'chilena'),
-      new ClienteModel(1, '17339126-9', 'daniel', 'gutierrez', 'pizarro', new Date(), 'chilena'),
-      new ClienteModel(1, '17339126-9', 'daniel', 'gutierrez', 'pizarro', new Date(), 'chilena'),
-      new ClienteModel(2, '18864783-9', 'aaron', 'presley', 'dark', new Date(), 'gringa')
-    ];
+    this.clientes = clienteService.getAllClientes();
 
     this.dataSource = new MatTableDataSource(this.clientes);
 
@@ -89,6 +84,16 @@ export class ClienteComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.clientes);
     formularioClientes.reset();
 
+  }
+
+  editCliente(id:number){
+    console.log('Se editará: ' + id);
+  }
+
+  deleteCliente(id:number){
+    console.log('Se borrará: ' + id);
+    this.clientes = this.clienteService.deleteCliente(id);
+    this.dataSource = new MatTableDataSource(this.clientes);
   }
 
 }

@@ -16,7 +16,7 @@ export class StockComponent implements OnInit {
   stock: StockModel;
   stocks: Array<StockModel>;
 
-  displayedColumns: string[] = ['Nombre', 'Descripción', 'Cantidad', 'Valor Exento', 'Valor Impuestos', 'Valor Total'];
+  displayedColumns: string[] = [ 'Nombre', 'Descripción', 'Cantidad', 'Valor Exento', 'Valor Impuestos', 'Valor Total', 'Acciones'];
   dataSource: MatTableDataSource<StockModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,9 +36,7 @@ export class StockComponent implements OnInit {
       valorTotal: ['']
     });
 
-    this.stocks = [
-      
-    ];
+    this.stocks = stockService.getAllStock();
 
     this.dataSource = new MatTableDataSource(this.stocks);
   }
@@ -88,6 +86,16 @@ export class StockComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.stocks);
     formularioStock.reset();
 
+  }
+
+  editStock(id:number){
+    console.log('Se editará: ' + id);
+  }  
+
+  deleteStock(id:number){
+    console.log('Se borrará: ' + id);
+    this.stocks = this.stockService.deleteStock(id);
+    this.dataSource = new MatTableDataSource(this.stocks);
   }
 
 }
