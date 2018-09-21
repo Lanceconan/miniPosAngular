@@ -7,6 +7,7 @@ import { ClienteService } from '../../services/cliente.service';
 import { StockService } from '../../services/stock.service';
 import { StockModel } from '../../models/StockModel';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { map, debounceTime, switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-venta',
@@ -44,6 +45,7 @@ export class VentaComponent implements OnInit {
     private stockServices: StockService
   ) {
 
+    this.stocks = [];
     this.dataSourceStock = new MatTableDataSource(this.stocks);
 
     this.formularioCliente = this.formCliente.group({
@@ -62,9 +64,9 @@ export class VentaComponent implements OnInit {
       0
     );
 
+    
+
   }
-
-
 
   ngOnInit() {
 
@@ -76,9 +78,25 @@ export class VentaComponent implements OnInit {
 
     this.dataSourceStock = new MatTableDataSource(this.stocks);
 
-    /*this.filteredClients = this.formularioCliente.get('cliente').valueChanges.pipe(debounceTime(500), switchMap(
-      q => this.clienteServices.get(q).pipe(map(x => x))
-    ));*/
+    this.filteredClients = this.formularioCliente.get('cliente').valueChanges.pipe(debounceTime(500), startWith(''),
+      map(value => this.filterCliente(value))
+    );
+
+    this.filteredStock = this.formularioStock.get('stock').valueChanges.pipe(debounceTime(500), startWith(''),
+      map(value => this.filterStock(value))
+    );
+  }
+
+  private filterCliente(value: string): ClienteModel[] {
+    const filterValue = value.toLowerCase();
+
+    return this.clienteServices.getAllClientes().filter(option => option.nombre.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private filterStock(value: string): StockModel[] {
+    const filterValue = value.toLowerCase();
+
+    return this.stockServices.getAllStock().filter(option => option.nombre.toLowerCase().indexOf(filterValue) === 0);
   }
 
   setValues(
@@ -111,5 +129,30 @@ export class VentaComponent implements OnInit {
     this.dataSourceStock = new MatTableDataSource(this.stocks);
   }
 
+  selectClient(client: ClienteModel){
+    this.cliente = client;
+  }
 
+  selectStock(stock: StockModel){
+    this.stocks.push(stock);
+    this.dataSourceStock = new MatTableDataSource(this.stocks);
+    this.formularioStock.reset();
+
+    this.total += stock.valorTotal;
+    this.totalExento += stock.valorExento;
+    this.totalImpuestos += stock.valorImpuestos;
+
+    this.setValues(
+      this.total,
+      this.totalImpuestos,
+      this.totalExento,
+      this.stocks.length
+    );
+
+  }
+
+  generateVenta(){
+    console.log(this.stocks);
+    console.log(this.cliente);
+  }
 }

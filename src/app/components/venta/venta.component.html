@@ -6,9 +6,9 @@
         <mat-form-field style="width:90%; margin-left: 20px;" [matTooltip]="formularioCliente.get('cliente').invalid && formularioCliente.get('cliente').touched ? 'Este dato es requerido' : null" matTooltipPosition="right">
             <input autocomplete="off" matInput [matAutocomplete]="clientAuto" formControlName="cliente" placeholder="Rut o nombre" (focus)="focusInput()" [readonly]="readonly">
             <mat-autocomplete #clientAuto="matAutocomplete" class="mat-autocomplete-client-panel">
-                <mat-option class="mat-option-class" *ngFor="let client of filteredClients | async" [value]="client.nombre + ' (' + client.rut + ')'">
+                <mat-option class="mat-option-class" *ngFor="let client of filteredClients | async" [value]="client.nombre + ' (' + client.rut + ')'" (onSelectionChange)="selectClient(client)">
                     <div style="display:flex;flex-direction:row;">
-                        <div style="width:300px;border-right: 1px solid orange;overflow: hidden;text-overflow: ellipsis;">{{ client.nombre }}</div>
+                        <div style="width:300px;border-right: 1px solid blueviolet;overflow: hidden;text-overflow: ellipsis;">{{ client.nombre }}</div>
                         <div style="width:150px;overflow: hidden;text-overflow: ellipsis; padding-left: 15px">{{ client.rut }}</div>
                     </div>
                 </mat-option>
@@ -28,7 +28,7 @@
         <mat-form-field style="width:95%; margin-left: 20px;" [matTooltip]="formularioStock.get('stock').invalid && formularioStock.get('stock').touched ? 'Este dato es requerido' : null" matTooltipPosition="right">
             <input autocomplete="off" matInput [matAutocomplete]="stockAuto" formControlName="stock" placeholder="Nombre o Descripción" (focus)="focusInput()" [readonly]="readonly">
             <mat-autocomplete #stockAuto="matAutocomplete" class="mat-autocomplete-client-panel">
-                <mat-option class="mat-option-class" *ngFor="let stock of filteredStock | async" [value]="stock.nombre + ' (' + stock.rut + ')'">
+                <mat-option class="mat-option-class" *ngFor="let stock of filteredStock | async" [value]="stock.nombre + ' (' + stock.descripcion + ')'" (onSelectionChange)="selectStock(stock)">
                     <div style="display:flex;flex-direction:row;">
                         <div style="width:300px;border-right: 1px solid orange;overflow: hidden;text-overflow: ellipsis;">{{ stock.nombre }}</div>
                         <div style="width:150px;overflow: hidden;text-overflow: ellipsis; padding-left: 15px">{{ stock.descripcion }}</div>
@@ -41,7 +41,7 @@
     </form>
 
     <div>
-        <div class="mat-elevation-z8" [ngStyle]="{'margin-left': '20px', 'background' : 'lightgray', 'margin-right': '20px'}">
+        <div class="mat-elevation-z8" [ngStyle]="{'margin-left': '20px', 'margin-right': '20px'}">
 
             <table mat-table [dataSource]="dataSourceStock" matSort>
 
@@ -82,8 +82,8 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsStock"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsStock;">
                 </tr>
 
             </table>
@@ -151,7 +151,7 @@
         Acciones
     </p>
     <div class="botonera">
-        <button mat-raised-button color="primary" style="margin-left: 50px; width: 150px; height: 45px;">Generar Venta</button>
-        <button mat-raised-button color="accent" style="margin-left: 10px; width: 150px; height: 45px;">Generar DTE</button>
+        <button mat-raised-button color="primary" style="margin-left: 50px; width: 150px; height: 45px;" (click)="generateVenta()">Generar Venta</button>
+        <button mat-raised-button color="accent" style="margin-left: 10px; width: 150px; height: 45px;" (click)="generateDTE()">Generar DTE</button>
     </div>
 </div>
