@@ -24,7 +24,16 @@ export class StockService {
   }
 
   deleteStock(id: number): Array<StockModel>{
-    this.stocks.splice(id - 1, 1);
+    var i:number = 0;
+    var posicion:number;
+
+    for(i=0; i < this.stocks.length;i++){
+      if(this.stocks[i].id == id){
+        posicion = i;        
+      }
+    }    
+    
+    this.stocks.splice(posicion, 1);
     return this.stocks;
   }
 }

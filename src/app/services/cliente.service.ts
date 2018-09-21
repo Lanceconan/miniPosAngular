@@ -33,7 +33,16 @@ export class ClienteService {
   }
 
   deleteCliente(id: number): Array<ClienteModel>{
-    this.clientes.splice(id - 1, 1);
+    var i:number;
+    var posicion:number;
+
+    for(i = 0; i < this.clientes.length; i++){
+      if(this.clientes[i].id == id){
+        posicion = i;
+      }
+    }
+    
+    this.clientes.splice(posicion, 1);
     return this.clientes;
   }
 
