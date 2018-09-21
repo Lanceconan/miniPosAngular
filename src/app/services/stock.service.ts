@@ -11,10 +11,10 @@ export class StockService {
 
   constructor() {
     this.stocks = [
-      new StockModel(1, 'Paltas', 'Están Maduras', 1000, 1000, 1000, 1000),
-      new StockModel(2, 'Tomates', 'Están Maduros', 1000, 1000, 1000, 1000),
-      new StockModel(3, 'Vienesas', 'Son veganas', 1000, 1000, 1000, 1000),
-      new StockModel(4, 'Ketchup', 'Tomate natural', 1000, 1000, 1000, 1000),
+      new StockModel(1, 'Paltas', 'Están Maduras', 10000, 1000, 1000, 1000),
+      new StockModel(2, 'Tomates', 'Están Maduros', 1000, 100000, 1000, 1000),
+      new StockModel(3, 'Vienesas', 'Son veganas', 1000, 1000, 1000000, 1000),
+      new StockModel(4, 'Ketchup', 'Tomate natural', 1000, 1000, 1000, 10000000),
     ];
 
   }

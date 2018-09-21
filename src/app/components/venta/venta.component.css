@@ -1,32 +1,37 @@
 .moduloCliente {
-    margin-left: 50px;
-    margin-top: 50px;
+    margin-left: 10px;
+    margin-top: 20px;
     border: 1px solid #afcde3;
-    width: 400px;
-    float: left;
-}
-
-.moduloBusquedaStock {
-    margin-left: 50px;
-    margin-top: 50px;
-    border: 1px solid #afcde3;
-    width: 400px;
+    width: 1411px;
+    height: 130px;
     float: left;
 }
 
 .moduloProductos {
-    margin-left: 50px;
-    margin-top: 50px;
+    margin-left: 10px;
+    margin-top: 20px;
     border: 1px solid #afcde3;
-    width: 400px;
+    width: 1170px;
+    height: 380px;
+    position: relative;
+    float: left;
+}
+
+.moduloTotalizador {
+    margin-left: 10px;
+    margin-top: 20px;
+    border: 1px solid #afcde3;
+    width: 230px;
+    height: 380px;
     float: left;
 }
 
 .moduloAcciones {
-    margin-left: 50px;
-    margin-top: 50px;
+    margin-left: 10px;
+    margin-top: 20px;
     border: 1px solid #afcde3;
-    width: 400px;
+    width: 1411px;
+    height: 130px;
     float: left;
 }
 
@@ -36,5 +41,47 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 15px;
     font-weight: bold;
+    margin-left: 20px;
+}
+
+.example-full-width {
+    width: 100%;
     margin-left: 4%;
+}
+
+.icon-search-suffix {
+    position: absolute;
+    top: 3px;
+    color: #afafaf;
+    font-size: 18px;
+    right: -5px;
+    background: white;
+}
+
+.borderContent {
+    border: 1px solid #0084ffd5;
+    border-left: 5px solid #0084ffd5;
+    height: 40px;
+    width: 200px;
+    margin-left: 4%;
+    padding: 0%;
+}
+
+.textContent {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 12px;
+    margin-left: 4%;
+    padding: 0%;
+}
+
+.textContentValues {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+    text-align: right;
+    margin: 10px;
+}
+
+.botonera {
+    margin-right: 20px;
+    padding: 0px;
 }

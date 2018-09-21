@@ -2,22 +2,156 @@
     <p class="tituloModulo">
         Selecciona un cliente
     </p>
-</div>
+    <form [formGroup]="formularioCliente">
+        <mat-form-field style="width:90%; margin-left: 20px;" [matTooltip]="formularioCliente.get('cliente').invalid && formularioCliente.get('cliente').touched ? 'Este dato es requerido' : null" matTooltipPosition="right">
+            <input autocomplete="off" matInput [matAutocomplete]="clientAuto" formControlName="cliente" placeholder="Rut o nombre" (focus)="focusInput()" [readonly]="readonly">
+            <mat-autocomplete #clientAuto="matAutocomplete" class="mat-autocomplete-client-panel">
+                <mat-option class="mat-option-class" *ngFor="let client of filteredClients | async" [value]="client.nombre + ' (' + client.rut + ')'">
+                    <div style="display:flex;flex-direction:row;">
+                        <div style="width:300px;border-right: 1px solid orange;overflow: hidden;text-overflow: ellipsis;">{{ client.nombre }}</div>
+                        <div style="width:150px;overflow: hidden;text-overflow: ellipsis; padding-left: 15px">{{ client.rut }}</div>
+                    </div>
+                </mat-option>
 
-
-<div class="moduloBusquedaStock">
-    <p class="tituloModulo">
-        selecciona un producto a Vender
-    </p>
-
+            </mat-autocomplete>
+            <mat-icon class="icon-search-suffix" *ngIf="!formularioCliente?.get('cliente')?.value">search</mat-icon>
+        </mat-form-field>
+    </form>
 </div>
 
 <div class="moduloProductos">
     <p class="tituloModulo">
         Stock a Vender
     </p>
+
+    <form [formGroup]="formularioStock">
+        <mat-form-field style="width:95%; margin-left: 20px;" [matTooltip]="formularioStock.get('stock').invalid && formularioStock.get('stock').touched ? 'Este dato es requerido' : null" matTooltipPosition="right">
+            <input autocomplete="off" matInput [matAutocomplete]="stockAuto" formControlName="stock" placeholder="Nombre o Descripción" (focus)="focusInput()" [readonly]="readonly">
+            <mat-autocomplete #stockAuto="matAutocomplete" class="mat-autocomplete-client-panel">
+                <mat-option class="mat-option-class" *ngFor="let stock of filteredStock | async" [value]="stock.nombre + ' (' + stock.rut + ')'">
+                    <div style="display:flex;flex-direction:row;">
+                        <div style="width:300px;border-right: 1px solid orange;overflow: hidden;text-overflow: ellipsis;">{{ stock.nombre }}</div>
+                        <div style="width:150px;overflow: hidden;text-overflow: ellipsis; padding-left: 15px">{{ stock.descripcion }}</div>
+                    </div>
+                </mat-option>
+
+            </mat-autocomplete>
+            <mat-icon class="icon-search-suffix" *ngIf="!formularioStock?.get('stock')?.value">search</mat-icon>
+        </mat-form-field>
+    </form>
+
+    <div>
+        <div class="mat-elevation-z8" [ngStyle]="{'margin-left': '20px', 'background' : 'lightgray', 'margin-right': '20px'}">
+
+            <table mat-table [dataSource]="dataSourceStock" matSort>
+
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.nombre | uppercase }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Descripción">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.descripcion | uppercase }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Cantidad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.cantidad }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Valor Exento">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Exento </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.valorExento | currency:'$':true:'1.0-2' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Valor Impuestos">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Impuestos </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.valorImpuestos | currency:'$':true:'1.0-2' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Valor Total">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Total </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.valorTotal | currency:'$':true:'1.0-2' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Acciones">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-raised-button type="submit" color="warn" (click)="deleteStock(row.id)">Eliminar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+
+</div>
+
+<div class="moduloTotalizador">
+    <p class="tituloModulo">
+        Resumen de Venta
+    </p>
+
+    <div>
+        <p class="textContent">
+            Cantidad Total Stock
+        </p>
+
+        <div class="borderContent">
+            <p class="textContentValues">
+                {{ cantidad }}
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <p class="textContent">
+            Total Exento
+        </p>
+        <div class="borderContent">
+            <p class="textContentValues">
+                {{ totalExento | currency:'$':true:'1.0-2'}}
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <p class="textContent">
+            Total Impuestos
+        </p>
+        <div class="borderContent">
+            <p class="textContentValues">
+                {{ totalImpuestos | currency:'$':true:'1.0-2'}}
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <p class="textContent">
+            Total
+        </p>
+        <div class="borderContent">
+            <p class="textContentValues">
+                {{ total | currency:'$':true:'1.0-2'}}
+            </p>
+        </div>
+    </div>
+
 </div>
 
 <div class="moduloAcciones">
-    <p class="tituloModulo">Acciones</p>
+    <p class="tituloModulo">
+        Acciones
+    </p>
+    <div class="botonera">
+        <button mat-raised-button color="primary" style="margin-left: 50px; width: 150px; height: 45px;">Generar Venta</button>
+        <button mat-raised-button color="accent" style="margin-left: 10px; width: 150px; height: 45px;">Generar DTE</button>
+    </div>
 </div>
