@@ -9,6 +9,7 @@ import { VentaComponent } from './components/venta/venta.component';
 import { MaterialModule } from './material';
 import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IntercomModule } from 'ng-intercom';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    IntercomModule.forRoot({
+      appId: 'klwzj86j',
+      updateOnRouterChange: true
+    })
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

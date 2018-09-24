@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Intercom } from 'ng-intercom';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +12,8 @@ export class AppComponent {
 
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public intercom: Intercom
   ){
 
     this.matIconRegistry.addSvgIcon(
@@ -29,5 +31,12 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/cliente.svg")
     );
 
+  }
+
+  ngOnInit(){
+    this.intercom.boot({
+      app_id: 'klwzj86j'
+    })
+    
   }
 }
