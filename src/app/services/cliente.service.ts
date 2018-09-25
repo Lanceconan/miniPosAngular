@@ -1,13 +1,16 @@
 import { Injectable, Type } from '@angular/core';
 import { ClienteModel } from '../models/ClienteModel';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ClienteService {
     
   clientes:Array<ClienteModel>;
   
-  constructor() { 
+  constructor(
+    http: HttpClient
+    ) { 
     
     this.clientes = [
       new ClienteModel(1, '17339126-9', 'ricardo', 'guerrero', 'alegria', new Date(), 'chilena'),

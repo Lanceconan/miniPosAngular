@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders, Component } from '@angular/core';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { VentaComponent } from './components/venta/venta.component';
 import { StockComponent } from './components/stock/stock.component';
+import { PruebasComponent } from './components/pruebas/pruebas.component';
 
 //Se importan componentes
 
@@ -13,7 +14,8 @@ const appRotes: Routes = [
     {path : '', component : ClienteComponent},
     {path : 'cliente', component : ClienteComponent},
     {path : 'venta', component : VentaComponent},
-    {path : 'stock', component : StockComponent}
+    {path : 'stock', component : StockComponent},
+    {path : 'prueba', component : PruebasComponent}
 ];
 
 //utilizar configuración de rutas

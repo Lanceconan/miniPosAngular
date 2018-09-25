@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StockModel } from '../models/StockModel';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class StockService {
@@ -9,7 +10,9 @@ export class StockService {
     
   }
 
-  constructor() {
+  constructor(
+    http: HttpClient
+  ) {
     this.stocks = [
       new StockModel(1, 'Paltas', 'Están Maduras', 10000, 1000, 1000, 1000),
       new StockModel(2, 'Tomates', 'Están Maduros', 1000, 100000, 1000, 1000),
@@ -35,5 +38,5 @@ export class StockService {
     
     this.stocks.splice(posicion, 1);
     return this.stocks;
-  }
+  }  
 }

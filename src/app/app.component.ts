@@ -31,6 +31,11 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/cliente.svg")
     );
 
+    this.matIconRegistry.addSvgIcon(
+      "test",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/test.svg")
+    );
+
   }
 
   ngOnInit(){

@@ -4,6 +4,7 @@ import { ClienteModel } from '../../models/ClienteModel';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ClienteService } from '../../services/cliente.service';
 
+
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
@@ -21,7 +22,7 @@ export class ClienteComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private clienteService: ClienteService
@@ -47,7 +48,7 @@ export class ClienteComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.paginator._intl.itemsPerPageLabel = 'Item por Página';
     this.paginator._intl.nextPageLabel = 'Siguiente';
-    this.paginator._intl.previousPageLabel = 'Anterior';
+    this.paginator._intl.previousPageLabel = 'Anterior';    
   }
 
   applyFilter(filterValue: string) {
@@ -94,6 +95,6 @@ export class ClienteComponent implements OnInit {
     console.log('Se borrará: ' + id);
     this.clientes = this.clienteService.deleteCliente(id);
     this.dataSource = new MatTableDataSource(this.clientes);
-  }
+  }  
 
 }

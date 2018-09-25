@@ -1,0 +1,31 @@
+<div>
+    <ol>
+        <li>
+            <mat-form-field>
+                <input matInput [(ngModel)]="name" placeholder="What's your name?">
+            </mat-form-field>
+        </li>
+        <li>
+            <button mat-raised-button (click)="openDialog()">Pick one</button>
+        </li>
+        <li *ngIf="animal">
+            You chose: <i>{{animal}}</i>
+        </li>
+    </ol>
+</div>
+
+<div>
+    <h2>Promesa</h2>
+    <h3>{{ promesa }} </h3>
+
+    <h2>Observable</h2>
+
+
+    <ul>
+        <li *ngFor="let observ of observable">{{ observ }} </li>
+    </ul>
+
+
+    <button mat-raised-button color="primary" (click)="subscribirse()">Escuchar</button>
+    <button mat-raised-button color="warn" (click)="unSubscribirse()">No escuchar</button>
+</div>

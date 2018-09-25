@@ -8,15 +8,18 @@ import { StockComponent } from './components/stock/stock.component';
 import { VentaComponent } from './components/venta/venta.component';
 import { MaterialModule } from './material';
 import { HttpClientModule} from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IntercomModule } from 'ng-intercom';
+import { PruebasComponent, DialogOverviewExampleDialog } from './components/pruebas/pruebas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClienteComponent,
     StockComponent,
-    VentaComponent
+    VentaComponent,
+    PruebasComponent,
+    DialogOverviewExampleDialog
     
   ],
   imports: [
@@ -28,8 +31,11 @@ import { IntercomModule } from 'ng-intercom';
     IntercomModule.forRoot({
       appId: 'klwzj86j',
       updateOnRouterChange: true
-    })
+    }),
+    FormsModule 
   ],
+  
+  entryComponents: [PruebasComponent, DialogOverviewExampleDialog],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
