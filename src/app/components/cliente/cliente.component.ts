@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ClienteModel } from '../../models/ClienteModel';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
@@ -12,7 +12,7 @@ import { ClienteService } from '../../services/cliente.service';
   providers: [ClienteService]
 })
 export class ClienteComponent implements OnInit {
-
+  
   formularioClientes: FormGroup;
   cliente: ClienteModel;
   clientes: Array<ClienteModel>;

@@ -22,10 +22,12 @@ export class PruebasComponent implements OnInit {
   public promesa:any;
   public observable:Array<any>;
   public subscribeElement: Subscription;
+  mensaje: string;
 
   constructor(
     public dialog: MatDialog,
     private pruebaService: PruebaService
+    
     ) { 
 
       this.observable = [];
@@ -37,7 +39,9 @@ export class PruebasComponent implements OnInit {
         }, res2 => {
           console.log(res2);
           this.promesa =  res2;
-        });      
+        });     
+        
+        
     }
 
   openDialog(): void {
@@ -71,13 +75,13 @@ export class PruebasComponent implements OnInit {
     this.subscribeElement.unsubscribe();    
   }
 
+  putMensajeInput(mensaje: string){
+    this.mensaje = mensaje;
+  }
+
 }
 
-
-
-
-
-
+//************************************************************************************ */
 
 @Component({
   selector: 'dialog-overview-example-dialog',

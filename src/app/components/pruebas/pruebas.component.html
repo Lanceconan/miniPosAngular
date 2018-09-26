@@ -29,3 +29,13 @@
     <button mat-raised-button color="primary" (click)="subscribirse()">Escuchar</button>
     <button mat-raised-button color="warn" (click)="unSubscribirse()">No escuchar</button>
 </div>
+<br>
+<div style="border: 1px solid black">
+    <h3>Componente Hijo</h3>
+    <app-hijo [name]="name" [animal]="animal" (eventoSalida)="putMensajeInput($event)">
+    </app-hijo>
+</div>
+
+<br>
+<br>
+<h2> Este es un Mensaje que proviene del Hijo según el botón Presionado: {{ mensaje }} </h2>

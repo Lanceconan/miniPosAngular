@@ -1,0 +1,27 @@
+<div>
+    <h4>Escuchando del padre</h4>
+    <ul>
+        <li> {{ propiedad1 }}</li>
+        <li> {{ propiedad2 }}</li>
+    </ul>
+</div>
+
+__________________________________________________________________________________________________________________________
+<br>
+
+<div>
+    <form class="example-form" [formGroup]="formularioHijoMensajes">
+        <h4>Enviando al padre</h4>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Mensaje 1" formControlName="mensaje1"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Mensaje 2" formControlName="mensaje2"></textarea>
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" (click)="enviarMensajeAlPadre(formularioHijoMensajes.get('mensaje1').value)">Mensaje 1</button>
+        <button mat-raised-button color="warn" (click)="enviarMensajeAlPadre(formularioHijoMensajes.get('mensaje2').value)">Mensaje 2</button>
+    </form>
+</div>
