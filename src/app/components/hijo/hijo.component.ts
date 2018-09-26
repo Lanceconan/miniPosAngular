@@ -18,6 +18,7 @@ export class HijoComponent implements OnInit {
   formularioHijoMensajes: FormGroup;
   
   constructor(private formHijo: FormBuilder) {
+    
     this.formularioHijoMensajes = this.formHijo.group({
       mensaje1: [''],
       mensaje2: ['']      

@@ -12,6 +12,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IntercomModule } from 'ng-intercom';
 import { PruebasComponent, DialogOverviewExampleDialog } from './components/pruebas/pruebas.component';
 import { HijoComponent } from './components/hijo/hijo.component';
+import { DataUserComponent } from './components/data-user/data-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HijoComponent } from './components/hijo/hijo.component';
     VentaComponent,
     PruebasComponent,
     DialogOverviewExampleDialog,
-    HijoComponent
+    HijoComponent,
+    DataUserComponent
     
   ],
   imports: [
@@ -34,7 +36,7 @@ import { HijoComponent } from './components/hijo/hijo.component';
       appId: 'klwzj86j',
       updateOnRouterChange: true
     }),
-    FormsModule    
+    FormsModule
   ],
   
   entryComponents: [PruebasComponent, DialogOverviewExampleDialog],

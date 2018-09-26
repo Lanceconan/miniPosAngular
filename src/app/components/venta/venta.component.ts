@@ -155,4 +155,9 @@ export class VentaComponent implements OnInit {
     console.log(this.stocks);
     console.log(this.cliente);
   }
+
+  limpiarCliente(){
+    this.formularioCliente.get('cliente').setValue('');
+    this.cliente = new ClienteModel(null, null, null, null, null, null, null);
+  }
 }

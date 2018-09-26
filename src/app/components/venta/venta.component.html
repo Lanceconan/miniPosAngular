@@ -12,11 +12,14 @@
                         <div style="width:150px;overflow: hidden;text-overflow: ellipsis; padding-left: 15px">{{ client.rut }}</div>
                     </div>
                 </mat-option>
-
             </mat-autocomplete>
             <mat-icon class="icon-search-suffix" *ngIf="!formularioCliente?.get('cliente')?.value">search</mat-icon>
         </mat-form-field>
     </form>
+</div>
+
+<div class="moduloDatosCliente">
+    <app-data-user [clienteModel]="cliente" (eventoLimpiar)="limpiarCliente()"></app-data-user>
 </div>
 
 <div class="moduloProductos">

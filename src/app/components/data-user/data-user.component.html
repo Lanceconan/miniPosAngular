@@ -1,0 +1,21 @@
+<div class="general">
+    <div class="recuadro">
+        <p class="texto"> {{ cliente == null? '': cliente.rut | uppercase }}</p>
+    </div>
+
+    <div class="recuadro">
+        <p class="texto"> {{ cliente == null? '': cliente.nombre | uppercase }}</p>
+    </div>
+
+    <div class="recuadro">
+        <p class="texto"> {{ cliente == null? '': cliente.apellidoPaterno | uppercase }}</p>
+    </div>
+
+    <div class="recuadro">
+        <p class="texto"> {{ cliente == null? '': cliente.apellidoMaterno | uppercase }}</p>
+    </div>
+    <div style="text-align: right; margin-right: 5px;">
+        <button mat-raised-button color="accent" style="margin-left: 10px; width: 150px; height: 30px;" (click)="enviarEvento()">Limpiar</button>
+    </div>
+
+</div>

@@ -2,7 +2,16 @@
     margin-left: 10px;
     margin-top: 20px;
     border: 1px solid #afcde3;
-    width: 1411px;
+    width: 1000px;
+    height: 130px;
+    float: left;
+}
+
+.moduloDatosCliente {
+    margin-left: 10px;
+    margin-top: 20px;
+    border: 1px solid #afcde3;
+    width: 411px;
     height: 130px;
     float: left;
 }

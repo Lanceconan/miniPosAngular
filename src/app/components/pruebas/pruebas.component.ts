@@ -41,6 +41,7 @@ export class PruebasComponent implements OnInit {
           this.promesa =  res2;
         });     
         
+        this.mensaje = '';
         
     }
 

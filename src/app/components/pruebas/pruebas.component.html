@@ -6,10 +6,10 @@
             </mat-form-field>
         </li>
         <li>
-            <button mat-raised-button (click)="openDialog()">Pick one</button>
+            <button mat-raised-button (click)="openDialog()">Escribe uno</button>
         </li>
         <li *ngIf="animal">
-            You chose: <i>{{animal}}</i>
+            Tu elección fue: <i> {{ animal }} </i>
         </li>
     </ol>
 </div>
@@ -29,7 +29,9 @@
     <button mat-raised-button color="primary" (click)="subscribirse()">Escuchar</button>
     <button mat-raised-button color="warn" (click)="unSubscribirse()">No escuchar</button>
 </div>
+
 <br>
+
 <div style="border: 1px solid black">
     <h3>Componente Hijo</h3>
     <app-hijo [name]="name" [animal]="animal" (eventoSalida)="putMensajeInput($event)">
@@ -38,4 +40,4 @@
 
 <br>
 <br>
-<h2> Este es un Mensaje que proviene del Hijo según el botón Presionado: {{ mensaje }} </h2>
+<h2 [style.color]="mensaje == ''? 'red' : ' black'"> Este es un Mensaje que proviene del Hijo según el botón Presionado: {{ mensaje == '' ? 'NO HAY NADA ESCRITO !!' : mensaje }} </h2>
