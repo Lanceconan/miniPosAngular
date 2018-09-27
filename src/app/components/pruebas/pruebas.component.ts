@@ -3,6 +3,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { PruebaService } from '../../services/prueba.service';
 
+declare var JQuery:any;
+declare var $:any;
+
 export interface DialogData {
   animal: string;
   name: string;
@@ -80,6 +83,9 @@ export class PruebasComponent implements OnInit {
     this.mensaje = mensaje;
   }
 
+  toggleDiv(){
+    $('.promesa-observable').slideToggle();
+  }
 }
 
 //************************************************************************************ */

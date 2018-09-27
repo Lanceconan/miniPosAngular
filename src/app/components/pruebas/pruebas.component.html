@@ -14,7 +14,7 @@
     </ol>
 </div>
 
-<div>
+<div class="promesa-observable">
     <h2>Promesa</h2>
     <h3>{{ promesa }} </h3>
 
@@ -29,7 +29,9 @@
     <button mat-raised-button color="primary" (click)="subscribirse()">Escuchar</button>
     <button mat-raised-button color="warn" (click)="unSubscribirse()">No escuchar</button>
 </div>
-
+<br><br>
+<button mat-raised-button color="warn" (click)="toggleDiv()">Aparecer</button>
+<br><br>
 <br>
 
 <div style="border: 1px solid black">
