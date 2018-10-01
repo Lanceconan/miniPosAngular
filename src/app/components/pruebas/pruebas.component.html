@@ -43,3 +43,11 @@
 <br>
 <br>
 <h2 [style.color]="mensaje == ''? 'red' : ' black'"> Este es un Mensaje que proviene del Hijo según el botón Presionado: {{ mensaje == '' ? 'NO HAY NADA ESCRITO !!' : mensaje }} </h2>
+
+<div style="border: 1px solid black; margin: 2px;">
+    <mat-chip-list class="mat-chip-list-stacked">
+        <mat-chip *ngFor="let chip of availableColors" selected [color]="chip.color">
+            {{chip.name}}
+        </mat-chip>
+    </mat-chip-list>
+</div>

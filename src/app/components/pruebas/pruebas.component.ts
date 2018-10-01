@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { PruebaService } from '../../services/prueba.service';
+import {ThemePalette} from '@angular/material/core';
 
 declare var JQuery:any;
 declare var $:any;
@@ -9,6 +10,11 @@ declare var $:any;
 export interface DialogData {
   animal: string;
   name: string;
+}
+
+export interface ChipColor {
+  name: string;
+  color: ThemePalette;
 }
 
 @Component({
@@ -26,6 +32,13 @@ export class PruebasComponent implements OnInit {
   public observable:Array<any>;
   public subscribeElement: Subscription;
   mensaje: string;
+
+  availableColors: ChipColor[] = [
+    {name: 'none', color: undefined},
+    {name: 'Primary', color: 'primary'},
+    {name: 'Accent', color: 'accent'},
+    {name: 'Warn', color: 'warn'}
+  ];
 
   constructor(
     public dialog: MatDialog,
