@@ -5,6 +5,7 @@ import { PruebaService } from '../../services/prueba.service';
 import { ThemePalette } from '@angular/material/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
+import { ResolveStart } from '@angular/router';
 
 declare var JQuery: any;
 declare var $: any;
@@ -50,13 +51,22 @@ export class PruebasComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  
   fruits: Fruit[] = [
     { name: 'Limón' },
     { name: 'Lima' },
     { name: 'Manzana' },
     { name: 'Pera' },
   ];
+
+  public badge1:number = this.getRandomInt(0, 100);
+  public badge2:number = this.getRandomInt(0, 100);
+  public badge3:number = this.getRandomInt(0, 100);
+
+  public hideBadge:boolean;
+  public nameAccionButton: string;
 
   constructor(
     public dialog: MatDialog,
@@ -76,6 +86,9 @@ export class PruebasComponent implements OnInit {
       });
 
     this.mensaje = '';
+    this.hideBadge = false;
+
+    this.nameAccionButton = 'Ocultar';
 
   }
 
@@ -140,6 +153,34 @@ export class PruebasComponent implements OnInit {
       this.fruits.splice(index, 1);
     }
   }
+
+  sumar(){
+    this.hideBadge = false;
+    this.badge1++;
+    this.badge2++;
+    this.badge3++;    
+    
+  }
+
+  restar(){
+    this.hideBadge = false;
+    this.badge1--;
+    this.badge2--;
+    this.badge3--;    
+  }
+
+  esconderBadge(){
+    this.hideBadge = !this.hideBadge;
+    this.nameAccionButton = this.hideBadge? 'Mostrar': 'Ocultar';
+    this.badge1 = this.getRandomInt(0, 100); 
+    this.badge2 = this.getRandomInt(0, 100); 
+    this.badge3 = this.getRandomInt(0, 100);    
+  }
+
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 }
 
 //************************************************************************************ */
@@ -158,4 +199,5 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
+  
 }

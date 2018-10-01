@@ -64,3 +64,21 @@
     </mat-form-field>
 
 </div>
+
+<div style="position: absolute; margin: 10px; border: 1px solid black; height: 200px; width: 500px;">
+    <br>
+    <div style="position: relative;">
+        <span [matBadge]="badge1" matBadgeOverlap="false" [matBadgeHidden]="hideBadge">Total productos</span>
+    </div> <br><br>
+    <div style="position: relative;">
+        <button mat-raised-button color="primary" [matBadge]="badge2" matBadgePosition="after" matBadgeColor="accent" [matBadgeHidden]="hideBadge" (click)="esconderBadge()"> Ver </button>
+    </div> <br><br>
+    <div style="position: relative;">
+        <mat-icon [matBadge]="badge3" matBadgeColor="warn" [matBadgeHidden]="hideBadge">home</mat-icon>
+    </div> <br><br>
+    <div style="position: relative;">
+        <button mat-raised-button color="primary" (click)="sumar()">Sumar</button>
+        <button mat-raised-button color="warn" (click)="restar()">Restar</button>
+        <button mat-raised-button color="accent" (click)="esconderBadge()"> {{ nameAccionButton }}</button>
+    </div>
+</div>
