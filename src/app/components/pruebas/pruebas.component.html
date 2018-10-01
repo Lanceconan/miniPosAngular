@@ -44,10 +44,23 @@
 <br>
 <h2 [style.color]="mensaje == ''? 'red' : ' black'"> Este es un Mensaje que proviene del Hijo según el botón Presionado: {{ mensaje == '' ? 'NO HAY NADA ESCRITO !!' : mensaje }} </h2>
 
-<div style="border: 1px solid black; margin: 2px;">
+<div style="border: 1px solid black; margin: 5px;">
     <mat-chip-list class="mat-chip-list-stacked">
         <mat-chip *ngFor="let chip of availableColors" selected [color]="chip.color">
             {{chip.name}}
         </mat-chip>
     </mat-chip-list>
+</div>
+
+<div style="border: 1px solid black; margin-top: 5px; margin-left: 5px;">
+    <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                {{fruit.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New fruit..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+    </mat-form-field>
+
 </div>

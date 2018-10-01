@@ -2,10 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { PruebaService } from '../../services/prueba.service';
-import {ThemePalette} from '@angular/material/core';
+import { ThemePalette } from '@angular/material/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material';
 
-declare var JQuery:any;
-declare var $:any;
+declare var JQuery: any;
+declare var $: any;
 
 export interface DialogData {
   animal: string;
@@ -15,6 +17,10 @@ export interface DialogData {
 export interface ChipColor {
   name: string;
   color: ThemePalette;
+}
+
+export interface Fruit {
+  name: string;
 }
 
 @Component({
@@ -28,43 +34,55 @@ export class PruebasComponent implements OnInit {
   animal: string;
   name: string;
 
-  public promesa:any;
-  public observable:Array<any>;
+  public promesa: any;
+  public observable: Array<any>;
   public subscribeElement: Subscription;
   mensaje: string;
 
   availableColors: ChipColor[] = [
-    {name: 'none', color: undefined},
-    {name: 'Primary', color: 'primary'},
-    {name: 'Accent', color: 'accent'},
-    {name: 'Warn', color: 'warn'}
+    { name: 'none', color: undefined },
+    { name: 'Primary', color: 'primary' },
+    { name: 'Accent', color: 'accent' },
+    { name: 'Warn', color: 'warn' }
+  ];
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruits: Fruit[] = [
+    { name: 'Limón' },
+    { name: 'Lima' },
+    { name: 'Manzana' },
+    { name: 'Pera' },
   ];
 
   constructor(
     public dialog: MatDialog,
     private pruebaService: PruebaService
-    
-    ) { 
 
-      this.observable = [];
+  ) {
 
-      this.pruebaService.getTestPromesa().then(
-        res1 => {
-          console.log(res1);
-          this.promesa =  res1;
-        }, res2 => {
-          console.log(res2);
-          this.promesa =  res2;
-        });     
-        
-        this.mensaje = '';
-        
-    }
+    this.observable = [];
+
+    this.pruebaService.getTestPromesa().then(
+      res1 => {
+        console.log(res1);
+        this.promesa = res1;
+      }, res2 => {
+        console.log(res2);
+        this.promesa = res2;
+      });
+
+    this.mensaje = '';
+
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -77,7 +95,7 @@ export class PruebasComponent implements OnInit {
   ngOnInit() {
   }
 
-  subscribirse(){
+  subscribirse() {
     this.observable.splice(0);
     this.subscribeElement = this.pruebaService.getTestObserbable().subscribe(
       res => {
@@ -87,17 +105,40 @@ export class PruebasComponent implements OnInit {
     );
   }
 
-  unSubscribirse(){
-    
-    this.subscribeElement.unsubscribe();    
+  unSubscribirse() {
+
+    this.subscribeElement.unsubscribe();
   }
 
-  putMensajeInput(mensaje: string){
+  putMensajeInput(mensaje: string) {
     this.mensaje = mensaje;
   }
 
-  toggleDiv(){
+  toggleDiv() {
     $('.promesa-observable').slideToggle();
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push({name: value.trim()});
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: Fruit): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
   }
 }
 
@@ -111,7 +152,7 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
     this.dialogRef.close();
