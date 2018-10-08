@@ -13,6 +13,8 @@ import { IntercomModule } from 'ng-intercom';
 import { PruebasComponent, DialogOverviewExampleDialog } from './components/pruebas/pruebas.component';
 import { HijoComponent } from './components/hijo/hijo.component';
 import { DataUserComponent } from './components/data-user/data-user.component';
+import { FatherComponent } from './components/father/father.component';
+import { SonComponent } from './components/son/son.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DataUserComponent } from './components/data-user/data-user.component';
     PruebasComponent,
     DialogOverviewExampleDialog,
     HijoComponent,
-    DataUserComponent
+    DataUserComponent,
+    FatherComponent,
+    SonComponent
     
   ],
   imports: [
@@ -39,8 +43,8 @@ import { DataUserComponent } from './components/data-user/data-user.component';
     FormsModule
   ],
   
-  entryComponents: [PruebasComponent, DialogOverviewExampleDialog],
-  providers: [appRoutingProviders],
+  entryComponents: [PruebasComponent, DialogOverviewExampleDialog, SonComponent],
+  providers: [appRoutingProviders, FatherComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

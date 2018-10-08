@@ -5,6 +5,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { VentaComponent } from './components/venta/venta.component';
 import { StockComponent } from './components/stock/stock.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
+import { SonComponent } from './components/son/son.component';
 
 //Se importan componentes
 
@@ -15,7 +16,8 @@ const appRotes: Routes = [
     {path : 'cliente', component : ClienteComponent},
     {path : 'venta', component : VentaComponent},
     {path : 'stock', component : StockComponent},
-    {path : 'prueba', component : PruebasComponent}
+    {path : 'prueba', component : PruebasComponent},
+    {path : 'son', component : SonComponent}
 ];
 
 //utilizar configuración de rutas
