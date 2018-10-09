@@ -24,6 +24,6 @@ export class SonComponent implements OnInit {
 
   activarEvento(){
     this.father.sendRandomNumber();
-  }
+  }  
 
 }

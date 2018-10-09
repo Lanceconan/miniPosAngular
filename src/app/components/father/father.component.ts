@@ -10,8 +10,7 @@ export class FatherComponent {
 
   @Output() emitterRandomNumber:EventEmitter<number> = new EventEmitter();
   
-  constructor(){
-    this.sendRandomNumber();
+  constructor(){    
   }
   
   sendRandomNumber(){
