@@ -82,3 +82,31 @@
         <button mat-raised-button color="accent" (click)="esconderBadge()"> {{ nameAccionButton }}</button>
     </div>
 </div>
+
+<div style="margin-top: 300px; border: 1px solid black;">
+    <div style="padding: 3%">
+        <button mat-raised-button color="primary" (click)="getCookies()">Obtener Cookies</button>
+        <button mat-raised-button color="accent" (click)="setCookies()">Setear Cookies</button>
+        <button mat-raised-button color="warn" (click)="delCookies()">Eliminar Cookies</button>
+    </div>
+
+    <div style="padding: 3%">
+
+        <mat-form-field class="example-user-input">
+            <input matInput placeholder="Texto para usar cookie" type="text" [(ngModel)]="textCookie">
+        </mat-form-field>
+
+        <br>
+
+        <button mat-raised-button color="primary" (click)="putCookiesText()">Obtener Cookie</button>
+        <button mat-raised-button color="accent" (click)="setCookiesText()">Setear Cookie</button>
+        <button mat-raised-button color="warn" (click)="delCookiesText()">Eliminar Cookie</button>
+
+        <br>
+
+        <mat-form-field class="example-user-input">
+            <input matInput placeholder="Cookie Almacenada" type="text" [(ngModel)]="textOpt">
+        </mat-form-field>
+
+    </div>
+</div>

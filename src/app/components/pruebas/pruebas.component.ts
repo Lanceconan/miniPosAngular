@@ -3,12 +3,20 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { PruebaService } from '../../services/prueba.service';
 import { ThemePalette } from '@angular/material/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material';
 import { ResolveStart } from '@angular/router';
+
+import { CookieService } from 'ngx-cookie-service';
 
 declare var JQuery: any;
 declare var $: any;
+
+export interface datos{
+  name: string;
+  edad: number;
+  ciudad: string;
+}
 
 export interface DialogData {
   animal: string;
@@ -32,6 +40,16 @@ export interface Fruit {
 })
 export class PruebasComponent implements OnInit {
 
+  private textCookie:string = '';
+  private textOpt:string = '';
+
+  private datos: datos[] = [
+    {name : 'Marco', edad: 42, ciudad: 'Valdivia'},
+    {name : 'Axel', edad: 25, ciudad: 'Santiago'},
+    {name : 'Miranda', edad: 22, ciudad: 'Rancagua'},
+    {name : 'Lenin', edad: 63, ciudad: 'Villarica'},
+  ];
+
   animal: string;
   name: string;
 
@@ -51,9 +69,9 @@ export class PruebasComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  
+
   fruits: Fruit[] = [
     { name: 'Limón' },
     { name: 'Lima' },
@@ -61,16 +79,17 @@ export class PruebasComponent implements OnInit {
     { name: 'Pera' },
   ];
 
-  public badge1:number = this.getRandomInt(0, 100);
-  public badge2:number = this.getRandomInt(0, 100);
-  public badge3:number = this.getRandomInt(0, 100);
+  public badge1: number = this.getRandomInt(0, 100);
+  public badge2: number = this.getRandomInt(0, 100);
+  public badge3: number = this.getRandomInt(0, 100);
 
-  public hideBadge:boolean;
+  public hideBadge: boolean;
   public nameAccionButton: string;
 
   constructor(
     public dialog: MatDialog,
-    private pruebaService: PruebaService
+    private pruebaService: PruebaService,
+    private cookieService: CookieService
 
   ) {
 
@@ -137,7 +156,7 @@ export class PruebasComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push({name: value.trim()});
+      this.fruits.push({ name: value.trim() });
     }
 
     // Reset the input value
@@ -154,32 +173,66 @@ export class PruebasComponent implements OnInit {
     }
   }
 
-  sumar(){
+  sumar() {
     this.hideBadge = false;
     this.badge1++;
     this.badge2++;
-    this.badge3++;    
-    
+    this.badge3++;
+
   }
 
-  restar(){
+  restar() {
     this.hideBadge = false;
     this.badge1--;
     this.badge2--;
-    this.badge3--;    
+    this.badge3--;
   }
 
-  esconderBadge(){
+  esconderBadge() {
     this.hideBadge = !this.hideBadge;
-    this.nameAccionButton = this.hideBadge? 'Mostrar': 'Ocultar';
-    this.badge1 = this.getRandomInt(0, 100); 
-    this.badge2 = this.getRandomInt(0, 100); 
-    this.badge3 = this.getRandomInt(0, 100);    
+    this.nameAccionButton = this.hideBadge ? 'Mostrar' : 'Ocultar';
+    this.badge1 = this.getRandomInt(0, 100);
+    this.badge2 = this.getRandomInt(0, 100);
+    this.badge3 = this.getRandomInt(0, 100);
   }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  }
+
+  getCookies() {
+    alert(
+      this.textCookie = this.cookieService.get('test')
+    );
+  }
+
+  setCookies() {
+    alert(
+      this.cookieService.set('test', 'testing cookie', 12)
+    );
+  }
+
+  delCookies() {
+    alert(
+      this.cookieService.deleteAll('test')
+    );
+  }
+
+  putCookiesText() {
+    this.textOpt = this.cookieService.get('cookie-test');
+  }
+
+  setCookiesText() {
+    alert(
+      this.cookieService.set('cookie-test', this.textCookie, 12)
+    );
+  }
+
+  delCookiesText() {
+    alert(
+      this.cookieService.deleteAll('cookie-test')
+    );
+  }
 
 }
 
@@ -199,5 +252,5 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
-  
+
 }

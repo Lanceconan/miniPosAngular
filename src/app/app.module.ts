@@ -16,6 +16,8 @@ import { DataUserComponent } from './components/data-user/data-user.component';
 import { FatherComponent } from './components/father/father.component';
 import { SonComponent } from './components/son/son.component';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,7 @@ import { SonComponent } from './components/son/son.component';
   ],
   
   entryComponents: [PruebasComponent, DialogOverviewExampleDialog, SonComponent],
-  providers: [appRoutingProviders, FatherComponent],
+  providers: [appRoutingProviders, FatherComponent, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
