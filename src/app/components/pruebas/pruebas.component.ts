@@ -230,8 +230,9 @@ export class PruebasComponent implements OnInit {
 
   delCookiesText() {
     alert(
-      this.cookieService.deleteAll('cookie-test')
+      this.cookieService.deleteAll('cookie-test')      
     );
+    this.textOpt = '';
   }
 
 }
